@@ -10,29 +10,42 @@
 		*{margin:0;padding:0;}
 		li{list-style:none;}
 		a{color:inherit;text-decoration:none;}
+		#box{
+			width:200px;
+			height:200px;
+			padding:10px;
+			border:10px solid red;
+		}
+		#wrap{
+			width:200px;
+			height:200px;
+			margin:30px auto;
+			background-color: pink;
+			overflow: hidden;
+		}
 	</style>
 </head>
 <body>
-    <div id="box">
-
-
-
-
-    	<div></div>
-    	<div></div>
-    	<div></div>
-    	<div></div>
-    	<div></div>
-		1111
-
-
-
+	<div id="wrap">
+    	<div id="box"></div>
     </div>
     <script>
-		// console.log(box.childElementCount);
-		var dP = document.createElement('p');
-		var dP1 = document.createElement('p');
-		box.after(dP,dP1)
+    	// console.log(box.clientLeft)
+    	console.log(wrap.scrollWidth)
+    	console.log(wrap.clientWidth)
+    	console.log(wrap.offsetHeight)
+    	// String.prototype.double = function(n){
+    	// 	n = n || 2;
+    	// 	var str = '';
+    	// 	for(var i=0;i<n;i++){
+    	// 		str+= this;
+    	// 	}
+    	// 	return str;
+    	// }
+  //   	var dp = document.createElement('p');
+		// var a = box.firstChild.replaceChild(dp);
+		// console.log(box instanceof Element)
+		// console.log('121212'.double(10))
     </script>
 </body>
 </html>
