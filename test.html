@@ -19,33 +19,61 @@
 		#wrap{
 			width:200px;
 			height:200px;
+			padding:10px;
 			margin:30px auto;
 			background-color: pink;
-			overflow: hidden;
+			border:10px solid red;
+			overflow: auto;
 		}
 	</style>
 </head>
 <body>
-	<div id="wrap">
-    	<div id="box"></div>
+	<div style="
+        width:100px;
+        height:100px;
+        background-color: red;
+    " id="box">
     </div>
     <script>
-    	// console.log(box.clientLeft)
-    	console.log(wrap.scrollWidth)
-    	console.log(wrap.clientWidth)
-    	console.log(wrap.offsetHeight)
-    	// String.prototype.double = function(n){
-    	// 	n = n || 2;
-    	// 	var str = '';
-    	// 	for(var i=0;i<n;i++){
-    	// 		str+= this;
-    	// 	}
-    	// 	return str;
-    	// }
-  //   	var dp = document.createElement('p');
-		// var a = box.firstChild.replaceChild(dp);
-		// console.log(box instanceof Element)
-		// console.log('121212'.double(10))
+        Element.prototype.eventListener = function(eventList){
+            eventList = eventList || {};
+            var val,type,This = this;
+            // 统一参数格式
+            for(var k in eventList){
+                val = eventList[k];
+                type = typeof val;
+                if(type === "function"){
+                    eventList[k] = [val,false];
+                }else if(val instanceof Array){
+                    eventList[k] = [val[0],val[1]||false];
+                }
+            }
+            // 绑定事件
+            for(k in eventList){
+                val = eventList[k];
+                this.addEventListener(k,val[0],val[1]);
+            }
+            return {
+                add:function(eName){
+                    This.addEventListener(eName,eventList[eName][0],eventList[eName][1]);
+                },
+                remove:function(eName){
+                    This.removeEventListener(eName,eventList[eName][0],eventList[eName][1]);
+                }
+            };
+        }
+        var a = box.eventListener({
+            click : [
+                function(){
+                    alert(this);
+
+                },
+                true
+            ],
+            mouseenter:function(){
+                console.log(10);
+            }
+        });
     </script>
 </body>
 </html>
